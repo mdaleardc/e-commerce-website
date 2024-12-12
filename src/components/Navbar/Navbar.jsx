@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <>
     <header className='bg-white border-b border-gray-400 fixed top-0 z-10 w-full h-[3rem]'>
-    <div className='w-full md:max-w-3xl mx-auto pt-2 flex justify-between items-center font-semibold px-2 sm:px-0'>
+    <div className='w-full md:max-w-3xl mx-auto pt-2 flex justify-between items-center font-semibold px-2'>
     
     <div>
     <Link to="/">
@@ -27,13 +27,17 @@ const Navbar = () => {
     <Link to='/'>
     <li>Home</li>
     </Link>
+    <Link to='/all-products'>
     <li>All Products</li>
+    </Link>
     <li>Mens</li>
     <li>Kids</li>
     </ul>
     
     <div className='flex flex-rows justify-between items-center gap-3'>
+    <Link to='/login'>
     <button className='rounded-3xl bg-gray-200 py-1 px-2'>Login</button>
+    </Link>
     <Link to='/cart'>
     <p className='cursort-pointer'><FaShoppingCart size='25'/></p>
     </Link>
@@ -52,7 +56,9 @@ const Navbar = () => {
     <Link to='/'>
     <li>Home</li>
     </Link>
+    <Link to='/all-products'>
     <li>Products</li>
+    </Link>
     <li>Mens</li>
     <li>Kids</li>
     </div>

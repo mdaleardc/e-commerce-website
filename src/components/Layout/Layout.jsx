@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   
   
   return (
-    <div className='bg-green-400'>
+    <div>
     <Navbar />
     
     <div className='contents'>
