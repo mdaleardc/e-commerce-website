@@ -4,13 +4,11 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 
 
-const AllProducts = () => {
+const AllProducts = ({addToCart}) => {
 
 const [allProducts, setAllProducts] = useState([]);
 const [originalProducts, setOriginalProducts] = useState([]);
 const [productCategory, setProductCategory] = useState([]);
-const [selectProduct, setSelectProduct] = useState("");
-console.log(selectProduct);
 
 useEffect(()=> {
   const getAllProducts = async () => {
@@ -39,7 +37,6 @@ useEffect(()=> {
 },[]);
 
 const filterProducts = (productCategoryName) => {
-  setSelectProduct(productCategoryName);
   
   const data = productCategoryName ? originalProducts.filter(item => item.category === productCategoryName) : originalProducts;
   
@@ -82,7 +79,7 @@ const filterProducts = (productCategoryName) => {
 <p>{truncatedTitle}</p>
 <p className='bg-[#B5CAFF] px-1 font-bold text-[#0082FF] rounded-md'>{allItem.rating}</p>
 <p className='font-bold'>{convertedPrice} <span className='text-[10px] font-bold'>MMK</span></p>
-<button className='rounded-md bg-[#008CFF] px-2 text-xl font-medium text-white'>Add to Cart</button>
+<button className='rounded-md bg-[#008CFF] px-2 text-xl font-medium text-white' onClick={()=>addToCart(allItem)}>Add to Cart</button>
 </div>
   )})
 }

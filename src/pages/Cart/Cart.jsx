@@ -4,7 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 import { HiMiniArrowUturnLeft } from "react-icons/hi2";
 
 
-const Cart = () => {
+const Cart = ({ cart }) => {
   
   
   
@@ -20,7 +20,7 @@ const Cart = () => {
     <div className='col-span-5'>
   <div className='flex flex-row justify-between items-center border-b-[2px] border-gray-400 text-2xl font-medium'>
     <h2>Shopping Cart</h2>
-    <h2>0 Item</h2>
+    <h2>{cart.length} Items</h2>
   </div>
   <div className='w-full grid grid-rows gap-4 '>
     <div className='w-full flex flex-row justify-between items-center border-b py-4 text-xl font-semibold'>
@@ -30,24 +30,34 @@ const Cart = () => {
       <h3>Total</h3>
     </div>
     
-    <div className='grid grid-cols-12 justify-center items-center border p-2'>
-      <div className='col-span-4'>
-        <p>Product name</p>
-        <p>Brand</p>
+    {
+      cart.map((cartItem) => {
+      
+        return (
+        <div key={cartItem.id} className='grid grid-cols-12 justify-center items-center border border-[blue] p-2 rounded'>
+      <div className='col-span-4 grid grid-cols-2'>
+      <img src={cartItem.thumbnail} alt='product thumbnail' className='w-[60px] h-[60px]'/>
+        <div>
+        <p>{cartItem.title}</p>
+        <p>{cartItem.category}</p>
         <button className='flex flex-row items-center justify-center gap-2 text-red-400'><RxCross2 /> Remove</button>
+        </div>
       </div>
       <div className='col-span-8 grid grid-cols-2 justify-center items-center'>
         <div className='mx-auto flex flex-row justify-between items-center gap-4'>
-          <botton>-</botton>
-          <p>Qty</p>
-          <botton>+</botton>
+          <button>-</button>
+          <p>{cartItem.quantity}</p>
+          <button>+</button>
         </div>
             <div className='flex flex-row justify-between items-center gap-4'>
-              <p>price</p>
-              <p>total price</p>
+              <p>{cartItem.price}</p>
+              <p>{cartItem.price * cartItem.quantity}</p>
             </div>
       </div>
     </div>
+        )
+      })
+    }
     
       <button className='text-left flex flex-row gap-2  text-blue-400'><HiMiniArrowUturnLeft size='30' className=' text-[gold]'/> Continue Shopping</button>
   </div>
@@ -55,10 +65,10 @@ const Cart = () => {
   
   {/*Order Summary*/}
   
-  <div className='border col-span-2'>
+  <div className='col-span-2'>
     <h2 className='w-fit mx-auto text-2xl font-semibold text-center border-b'>Order Summary</h2>
     <div className='flex flex-row justify-between p-2'>
-      <h4>Item:3</h4>
+      <h4>Total</h4>
       <h4>$567</h4>
     </div>
     
