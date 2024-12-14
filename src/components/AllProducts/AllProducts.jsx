@@ -55,7 +55,7 @@ useEffect(() => {
     }
   }
   getProducts();
-}, [selectProduct]);
+}, [allProducts, selectProduct]);
 
   
 const filterProducts = (products) => {

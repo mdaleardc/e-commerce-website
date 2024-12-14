@@ -88,7 +88,7 @@ const [isShown, setIsShown] = useState(false);
 		</a>
 		</div>
 		<Link to='/signup'>
-		<p>Don't have an account? <span className='text-xl text-[#FF6300] font-semibold hover:text-[#ff00cc]'><u>SignUp</u></span></p>
+		<p>Don&apos;t have an account? <span className='text-xl text-[#FF6300] font-semibold hover:text-[#ff00cc]'><u>SignUp</u></span></p>
 		</Link>
 		</div>
 		</div>
