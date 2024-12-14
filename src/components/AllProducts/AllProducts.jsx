@@ -74,13 +74,15 @@ const filterProducts = (productCategoryName) => {
   allProducts.map((allItem, index) => {
   
   const truncatedTitle = allItem.title.length > 20 ? `${allItem.title.slice(0, 20)}...` : allItem.title;
+  const price = Number(allItem.price)
+  const convertedPrice = (price * 209.8247).toFixed(0);
   return (
   <div key={index} className='h-[280px] rounded-lg m-2 bg-gray-200 border-[2px] border-[#A9FFFF] flex flex-col justify-center items-center'>
 <img src={allItem.thumbnail} alt={`${allItem.title} image`} className='w-full h-3/5 object-fit rounded-md'/>
 <p>{truncatedTitle}</p>
-<p>Price: {allItem.price}</p>
-<p>Rating: {allItem.rating}</p>
-<button className='rounded-md bg-[#00B1FF] px-4 py-1 text-xl font-semibold text-white'>Add to Cart</button>
+<p className='bg-[#B5CAFF] px-1 font-bold text-[#0082FF] rounded-md'>{allItem.rating}</p>
+<p className='font-bold'>{convertedPrice} <span className='text-[10px] font-bold'>MMK</span></p>
+<button className='rounded-md bg-[#008CFF] px-2 text-xl font-medium text-white'>Add to Cart</button>
 </div>
   )})
 }
