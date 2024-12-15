@@ -2,11 +2,13 @@ import Layout from "../../components/Layout/Layout";
 import cartpng from "../../assets/cartpng.jpg"
 import { RxCross2 } from "react-icons/rx";
 import { HiMiniArrowUturnLeft } from "react-icons/hi2";
+import { FaArrowLeft } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, handleDec, handleInc, handleRemove }) => {
   
-  
+  const totalCost = cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
   
   return (
     <div className="pt-[3rem]">
@@ -33,6 +35,8 @@ const Cart = ({ cart }) => {
     {
       cart.map((cartItem) => {
       
+      const priceFixedToDecPoint = cartItem.price.toFixed(2)
+      
         return (
         <div key={cartItem.id} className='text-black bg-gray-300 grid grid-cols-12 justify-center items-center border p-2 rounded'>
       <div className='col-span-4 grid grid-cols-2'>
@@ -40,53 +44,56 @@ const Cart = ({ cart }) => {
         <div>
         <p>{cartItem.title}</p>
         <p>{cartItem.category}</p>
-        <button className='flex flex-row items-center justify-center gap-2 text-red-400'><RxCross2 /> Remove</button>
+        <button className='flex flex-row items-center justify-center gap-2 text-red-400' onClick={()=>handleRemove(cartItem.id)} aria-label="Remove item"><RxCross2 /> Remove</button>
         </div>
       </div>
       <div className='col-span-8 grid grid-cols-2 justify-center items-center'>
         <div className='mx-auto flex flex-row justify-between items-center gap-4'>
-          <button>-</button>
+          <button aria-label="Decrease quantity" onClick={()=>handleDec(cartItem.id)}>-</button>
           <p>{cartItem.quantity}</p>
-          <button>+</button>
+          <button aria-label="Increase quantity" onClick={()=>handleInc(cartItem.id)}>+</button>
         </div>
             <div className='flex flex-row justify-between items-center gap-4'>
-              <p>{cartItem.price}</p>
-              <p>{cartItem.price * cartItem.quantity}</p>
+              <p>{priceFixedToDecPoint} <span className='text-[10px] font-bold'>MMK</span></p>
+              <p>{(cartItem.price * cartItem.quantity).toFixed(2)} <span className='text-[10px] font-bold'>MMK</span></p>
             </div>
       </div>
     </div>
         )
       })
     }
-    
-      <button className='text-left flex flex-row gap-2  text-blue-400'><HiMiniArrowUturnLeft size='30' className=' text-[gold]'/> Continue Shopping</button>
+    <Link to="/all-products">
+      <button className='text-left flex flex-row items-center gap-2  text-blue-400'><FaArrowLeft size='30' className=' text-[blue]' aria-label="Continue to hopping"/> Continue Shopping</button>
+      </Link>
   </div>
   </div>
   
   {/*Order Summary*/}
   
-  <div className='col-span-2 rounded-md bg-gray-300 text-black p-2'>
+  
+  <div className='h-fit col-span-2 rounded-md text-black p-2 border-[1px] border-red-800  bg-gray-300'>
     <h2 className='w-fit mx-auto text-2xl font-semibold text-center border-b'>Order Summary</h2>
     <div className='flex flex-row justify-between p-2'>
-      <h4>Total</h4>
-      <h4>$567</h4>
+      <h4>ITEMS {cart.length}</h4>
+      <h4>{ totalCost }</h4>
     </div>
     
     <div>
-    <h3 className='w-fit mx-auto text-xl font-semibold text-center text-blue-400'>Shipping</h3>
+    <h3 className='w-fit mx-auto text-xl font-semibold text-center text-blue-400 p-2'>Shipping</h3>
     <div className='flex flex-col gap-2'>
       <p>Standard Shipping _ $10</p>
       <h4>Promo Code</h4>
-      <input type="number" placeholder="Enter your code" className='w-4/5 h-[2rem] outline-none rounded'/>
-      <button type="button" className='bg-[#ff1234] px-1 rounded-md w-2/5 text-xl font-medium'>Apply</button>
+      <input type="number" placeholder="Enter your code" className='w-4/5 h-[2rem] pl-2 outline-none rounded'/>
+      <button type="button" className='text-white bg-[#ff1234] px-1 rounded-md w-2/5 text-xl font-medium'>Apply</button>
       <div className='flex flex-row justify-between items-center w-4/5'>
         <p>Total Cost</p>
-        <p>$0.00</p>
+        <p>{(Number(totalCost) + 10).toFixed(2)}</p>
       </div>
-        <button className='bg-[green] mx-auto px-1 rounded-md w-3/5 text-xl font-medium'>Checkout</button>
+        <button className='text-white bg-[green] mx-auto px-1 rounded-md w-3/5 text-xl font-medium'>Checkout</button>
     </div>
   </div>
   </div>
+  
   </div>
 </section>
     
