@@ -15,8 +15,8 @@ const Cart = ({ cart }) => {
     <img src={cartpng} alt='Cart Banner' />
     
     
-<section className="bg-white py-8 dark:bg-gray-900 md:py-10">
-  <div className="mx-auto max-w-screen-xl px-4 2xl:px-0 text-white grid grid-cols-1 md:grid-cols-7 gap-2">
+<section className="bg-white text-black py-8 md:py-10">
+  <div className="mx-auto max-w-screen-xl px-4 2xl:px-0 grid grid-cols-1 md:grid-cols-7 gap-2">
     <div className='col-span-5'>
   <div className='flex flex-row justify-between items-center border-b-[2px] border-gray-400 text-2xl font-medium'>
     <h2>Shopping Cart</h2>
@@ -34,7 +34,7 @@ const Cart = ({ cart }) => {
       cart.map((cartItem) => {
       
         return (
-        <div key={cartItem.id} className='grid grid-cols-12 justify-center items-center border border-[blue] p-2 rounded'>
+        <div key={cartItem.id} className='text-black bg-gray-300 grid grid-cols-12 justify-center items-center border p-2 rounded'>
       <div className='col-span-4 grid grid-cols-2'>
       <img src={cartItem.thumbnail} alt='product thumbnail' className='w-[60px] h-[60px]'/>
         <div>
@@ -65,7 +65,7 @@ const Cart = ({ cart }) => {
   
   {/*Order Summary*/}
   
-  <div className='col-span-2'>
+  <div className='col-span-2 rounded-md bg-gray-300 text-black p-2'>
     <h2 className='w-fit mx-auto text-2xl font-semibold text-center border-b'>Order Summary</h2>
     <div className='flex flex-row justify-between p-2'>
       <h4>Total</h4>
@@ -74,16 +74,16 @@ const Cart = ({ cart }) => {
     
     <div>
     <h3 className='w-fit mx-auto text-xl font-semibold text-center text-blue-400'>Shipping</h3>
-    <div className='flex flex-col items-center gap-2'>
+    <div className='flex flex-col gap-2'>
       <p>Standard Shipping _ $10</p>
       <h4>Promo Code</h4>
-      <input type="number" placeholder="Enter your code" className='w-4/5 outline-none rounded'/>
-      <button type="button" className='bg-[#00ff33] p-1 rounded-3xl w-4/5 text-2xl font-medium'>Apply</button>
+      <input type="number" placeholder="Enter your code" className='w-4/5 h-[2rem] outline-none rounded'/>
+      <button type="button" className='bg-[#ff1234] px-1 rounded-md w-2/5 text-xl font-medium'>Apply</button>
       <div className='flex flex-row justify-between items-center w-4/5'>
         <p>Total Cost</p>
         <p>$0.00</p>
       </div>
-        <button className='bg-[#00ffff] p-1 rounded-3xl w-4/5 text-2xl font-medium'>Checkout</button>
+        <button className='bg-[green] mx-auto px-1 rounded-md w-3/5 text-xl font-medium'>Checkout</button>
     </div>
   </div>
   </div>
