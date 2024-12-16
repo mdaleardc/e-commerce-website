@@ -1,4 +1,3 @@
-import Layout from "../../components/Layout/Layout";
 import cartpng from "../../assets/cartpng.jpg"
 import { RxCross2 } from "react-icons/rx";
 import { HiMiniArrowUturnLeft } from "react-icons/hi2";
@@ -12,7 +11,6 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove }) => {
   
   return (
     <div className="pt-[3rem]">
-    <Layout>
     <div>
     <img src={cartpng} alt='Cart Banner' />
     
@@ -71,7 +69,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove }) => {
   {/*Order Summary*/}
   
   
-  <div className='h-fit col-span-2 rounded-md text-black p-2 border-[1px] border-red-800  bg-gray-300'>
+  <div className='h-fit mx-auto col-span-2 rounded-md text-black p-2 border-[1px] border-red-800  bg-gray-300'>
     <h2 className='w-fit mx-auto text-2xl font-semibold text-center border-b'>Order Summary</h2>
     <div className='flex flex-row justify-between p-2'>
       <h4>ITEMS {cart.length}</h4>
@@ -87,7 +85,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove }) => {
       <button type="button" className='text-white bg-[#ff1234] px-1 rounded-md w-2/5 text-xl font-medium'>Apply</button>
       <div className='flex flex-row justify-between items-center w-4/5'>
         <p>Total Cost</p>
-        <p>{(Number(totalCost) + 10).toFixed(2)}</p>
+        <p>{cart.length ? (Number(totalCost) + 10).toFixed(2) :  0.00}</p>
       </div>
         <button className='text-white bg-[green] mx-auto px-1 rounded-md w-3/5 text-xl font-medium'>Checkout</button>
     </div>
@@ -100,7 +98,6 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove }) => {
     
     
     </div>
-    </Layout>
     </div>
     )
 }

@@ -4,7 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 
-const Navbar = () => {
+const Navbar = ({ cartCount }) => {
   
   const [isOpen, setIsOpen] = useState(false);
   
@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <>
     <header className='bg-white border-b border-gray-400 fixed top-0 z-10 w-full h-[3rem]'>
-    <div className='w-full md:max-w-3xl mx-auto pt-2 flex justify-between items-center font-semibold px-2'>
+    <div className='w-full md:max-w-3xl mx-auto pt-2 flex flex-row justify-between items-center font-semibold px-2'>
     
     <div>
     <Link to="/">
@@ -23,7 +23,7 @@ const Navbar = () => {
     </Link>
     </div>
     
-    <ul className='hidden sm:flex flex-rows justify-between items-center sm:gap-4'>
+    <ul className='hidden sm:flex flex-row justify-between items-center sm:gap-4'>
     <Link to='/'>
     <li>Home</li>
     </Link>
@@ -34,12 +34,12 @@ const Navbar = () => {
     <li>Kids</li>
     </ul>
     
-    <div className='flex flex-rows justify-between items-center gap-3'>
+    <div className='flex flex-row justify-between items-center gap-3'>
     <Link to='/login'>
     <button className='rounded-3xl bg-gray-200 py-1 px-2'>Login</button>
     </Link>
     <Link to='/cart'>
-    <p className='cursort-pointer'><FaShoppingCart size='25'/></p>
+    <p className='cursort-pointer relative'><span className='absolute top-[-30%] left-[25%] z-[-1] text-[#FF0055]'>{cartCount ? cartCount : ""}</span><FaShoppingCart size='25' className='opacity-[0.6]'/></p>
     </Link>
     <GiHamburgerMenu size='25' onClick={openMenu} className='sm:hidden'/>
     </div>

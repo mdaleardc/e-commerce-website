@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Layout from "../../components/Layout/Layout";
 import loginbanner1 from "../../assets/loginbanner1.jpg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
@@ -41,7 +40,6 @@ const [isShown, setIsShown] = useState(false);
 
 	return (
 		<>
-		<Layout>
 		<div className="w-full pt-[4rem] py-2">
 		<div className='w-5/6 mx-auto relative'>
 		<img src={loginbanner1} alt='login page image' className='w-full h-[220px] object-cover'/>
@@ -93,7 +91,6 @@ const [isShown, setIsShown] = useState(false);
 		</div>
 		</div>
 		</div>
-		</Layout>
 		</>
 	)
 }

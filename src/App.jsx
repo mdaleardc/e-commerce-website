@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import AllProducts from "./components/AllProducts/AllProducts";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
+import Footer from "./components/Footer/Footer";
 
 
 const App = () => {
   
   
   const [cart, setCart] = useState([]);
+  
   
   
   const addToCart = (product) => {
@@ -26,6 +29,7 @@ const App = () => {
     } else {
       
     setCart([...cart, {...product, quantity: 1}]);
+    setCartCount(cart.length);
     }
   }
   
@@ -54,11 +58,14 @@ const App = () => {
     }
   }
   
+  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  
   
   return (
     <div>
     
     <BrowserRouter>
+    <Navbar cartCount={cartCount}/>
     <Routes>
     
     <Route path='/' element={<Home />}/>
@@ -68,6 +75,7 @@ const App = () => {
     <Route path='/signup' element={<SignUp/>}/>
 
     </Routes>
+    <Footer />
     </BrowserRouter>
     
     </div>

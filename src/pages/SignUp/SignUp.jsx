@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Layout from "../../components/Layout/Layout";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
@@ -16,7 +15,6 @@ const SignUp = () => {
   
   return (
     <>
-    <Layout>
     <div className='w-5/6 mx-auto relative'>
 		<img src={loginbanner} alt='login page image' className='w-full h-[220px] object-cover'/>
 		<div className='w-full h-[220px] bg-black opacity-[0.5] absolute top-0 left-0'></div>
@@ -78,7 +76,6 @@ const SignUp = () => {
 		</Link>
 		</div>
 		</div>
-		</Layout>
     </>
     )
 }
