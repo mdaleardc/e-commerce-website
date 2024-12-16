@@ -39,7 +39,7 @@ const Navbar = ({ cartCount }) => {
     <button className='rounded-3xl bg-gray-200 py-1 px-2'>Login</button>
     </Link>
     <Link to='/cart'>
-    <p className='cursort-pointer relative'><span className='absolute top-[-30%] left-[25%] z-[-1] text-[#FF0055]'>{cartCount ? cartCount : ""}</span><FaShoppingCart size='25' className='opacity-[0.6]'/></p>
+    <p className='cursort-pointer relative'><span className='absolute top-[-30%] left-[35%] z-[-1] text-[#FF0055]'>{cartCount ? cartCount : ""}</span><FaShoppingCart size='25' className='opacity-[0.6]'/></p>
     </Link>
     <GiHamburgerMenu size='25' onClick={openMenu} className='sm:hidden'/>
     </div>

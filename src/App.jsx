@@ -14,6 +14,12 @@ const App = () => {
   
   const [cart, setCart] = useState([]);
   
+  const [promoCode, setPromoCode] = useState('');
+  
+  const [discount, setDiscount] = useState(0);
+  
+  const [invalidPromo, setInvalidPromo] = useState('Invalid promo code!');
+  
   
   
   const addToCart = (product) => {
@@ -58,7 +64,22 @@ const App = () => {
     }
   }
   
+  const totalCost = cart.reduce((acc, item) => acc + item.price * item.quantity, 0) - discount;
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  
+  
+  const applyPromoCode = () => {
+    if (promoCode === "promo10") {
+      setDiscount(totalCost * 0.1);
+      setPromoCode("");
+      promoCode("")
+    } else {
+      alert(invalidPromo);
+      setPromoCode("");
+      promoCode("");
+    }
+    
+  }
   
   
   return (
@@ -69,7 +90,7 @@ const App = () => {
     <Routes>
     
     <Route path='/' element={<Home />}/>
-    <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove}/>}/>
+    <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove} totalCost={totalCost.toFixed(2)} setPromoCode={setPromoCode} applyPromoCode={applyPromoCode} promoCode={promoCode}/>}/>
     <Route path='/all-products' element={<AllProducts addToCart={addToCart} />}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>

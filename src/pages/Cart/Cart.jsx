@@ -5,14 +5,13 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 
-const Cart = ({ cart, handleDec, handleInc, handleRemove }) => {
+const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode }) => {
   
-  const totalCost = cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
   
   return (
     <div className="pt-[3rem]">
     <div>
-    <img src={cartpng} alt='Cart Banner' />
+    <img src={cartpng} alt='Cart Banner' className='w-full h-[200px] object-cover'/>
     
     
 <section className="bg-white text-black py-8 md:py-10">
@@ -81,8 +80,8 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove }) => {
     <div className='flex flex-col gap-2'>
       <p>Standard Shipping _ $10</p>
       <h4>Promo Code</h4>
-      <input type="number" placeholder="Enter your code" className='w-4/5 h-[2rem] pl-2 outline-none rounded'/>
-      <button type="button" className='text-white bg-[#ff1234] px-1 rounded-md w-2/5 text-xl font-medium'>Apply</button>
+      <input type="text" placeholder="Enter your code" className='w-4/5 h-[2rem] pl-2 outline-none rounded' value={promoCode} onChange={(e)=>setPromoCode(e.target.value)}/>
+      <button type="button" className='text-white bg-[#ff1234] px-1 rounded-md w-2/5 text-xl font-medium' onClick={applyPromoCode}>Apply</button>
       <div className='flex flex-row justify-between items-center w-4/5'>
         <p>Total Cost</p>
         <p>{cart.length ? (Number(totalCost) + 10).toFixed(2) :  0.00}</p>
