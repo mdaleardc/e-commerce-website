@@ -18,7 +18,9 @@ const App = () => {
   
   const [discount, setDiscount] = useState(0);
   
-  const [invalidPromo, setInvalidPromo] = useState('Invalid promo code!');
+  const [invalidPromo, setInvalidPromo] = useState("");
+  
+  const [promoApplied, setPromoApplied] = useState(false);
   
   
   
@@ -69,14 +71,20 @@ const App = () => {
   
   
   const applyPromoCode = () => {
+    if(promoApplied) {
+      setInvalidPromo("The promo already applied!");
+      return;
+    }
+    
     if (promoCode === "promo10") {
       setDiscount(totalCost * 0.1);
       setPromoCode("");
-      promoCode("")
+      setInvalidPromo('');
+      setPromoApplied(true);
     } else {
-      alert(invalidPromo);
+     
+      setInvalidPromo('Invalid promo code!');
       setPromoCode("");
-      promoCode("");
     }
     
   }
@@ -90,7 +98,7 @@ const App = () => {
     <Routes>
     
     <Route path='/' element={<Home />}/>
-    <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove} totalCost={totalCost.toFixed(2)} setPromoCode={setPromoCode} applyPromoCode={applyPromoCode} promoCode={promoCode}/>}/>
+    <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove} totalCost={totalCost.toFixed(2)} setPromoCode={setPromoCode} applyPromoCode={applyPromoCode} promoCode={promoCode} invalidPromo={invalidPromo} promoApplied={promoApplied}/>}/>
     <Route path='/all-products' element={<AllProducts addToCart={addToCart} />}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>

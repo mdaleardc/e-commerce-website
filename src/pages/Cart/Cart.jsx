@@ -5,7 +5,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 
-const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode }) => {
+const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode, invalidPromo, promoApplied }) => {
   
   
   return (
@@ -77,10 +77,11 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
     
     <div>
     <h3 className='w-fit mx-auto text-xl font-semibold text-center text-blue-400 p-2'>Shipping</h3>
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-1'>
       <p>Standard Shipping _ $10</p>
       <h4>Promo Code</h4>
       <input type="text" placeholder="Enter your code" className='w-4/5 h-[2rem] pl-2 outline-none rounded' value={promoCode} onChange={(e)=>setPromoCode(e.target.value)}/>
+        <span className={`text-sm ${invalidPromo ? "text-[#ee0000]" : "text-green-600"}`}>{invalidPromo || (promoApplied && "Applied promo code successfully!")}</span>
       <button type="button" className='text-white bg-[#ff1234] px-1 rounded-md w-2/5 text-xl font-medium' onClick={applyPromoCode}>Apply</button>
       <div className='flex flex-row justify-between items-center w-4/5'>
         <p>Total Cost</p>

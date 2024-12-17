@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const AllProducts = ({ addToCart }) => {
   const [allProducts, setAllProducts] = useState([]);
@@ -47,7 +48,7 @@ const AllProducts = ({ addToCart }) => {
   return (
     <>
       {/* Search and Filter Section */}
-      <div className="w-full mx-auto mt-[3rem] mb-2 bg-[#c08CFF] px-2 py-1 fixed top-0">
+      <div className="w-full mx-auto mt-[3rem] mb-2 bg-[#c08CFF] px-2 py-1 fixed top-0 z-50">
         <div className="w-full sm:w-4/5 flex flex-row justify-between items-center">
           <div className="w-full flex flex-row justify-center items-center gap-6">
             <input
@@ -108,7 +109,7 @@ const AllProducts = ({ addToCart }) => {
                 key={index}
                 className="animate-pulse bg-gray-300 rounded-md p-4 h-[280px] flex flex-col justify-center items-center"
               >
-                <div className="w-full h-3/5 bg-gray-400 rounded-md"></div>
+              <div className="w-full h-3/5 bg-gray-400 rounded-md"></div>
                 <p className="h-4 bg-gray-400 rounded w-3/4 mt-2"></p>
                 <p className="h-4 bg-gray-400 rounded w-1/2 mt-1"></p>
               </div>
@@ -123,9 +124,19 @@ const AllProducts = ({ addToCart }) => {
             const price = Number(allItem.price);
             const convertedPrice = (price * 209.8247).toFixed(0);
             return (
-              <div
+              <motion.div
                 key={index}
                 className="h-[280px] rounded-lg m-2 bg-gray-200 border-[2px] border-[#A9FFFF] flex flex-col justify-center items-center"
+                whileHover= {{
+                  scale: 1.1,
+                  rotate: 1,
+                  boxShadow: "0px 10px 20px rgba(0, 0, 0. 0.2)" 
+                }}
+                transition= {{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20
+                }}
               >
                 <img
                   src={allItem.thumbnail}
@@ -145,7 +156,7 @@ const AllProducts = ({ addToCart }) => {
                 >
                   Add to Cart
                 </button>
-              </div>
+              </motion.div>
             );
           })
         )}
