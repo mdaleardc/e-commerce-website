@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
+import { motion } from "motion/react";
 
 const Navbar = ({ cartCount }) => {
   
@@ -23,7 +24,10 @@ const Navbar = ({ cartCount }) => {
     </Link>
     </div>
     
-    <ul className='hidden sm:flex flex-row justify-between items-center sm:gap-4'>
+    <ul className='hidden sm:flex flex-row justify-between items-center sm:gap-4'
+    whileHover={{
+      
+    }}>
     <Link to='/'>
     <li>Home</li>
     </Link>
@@ -48,7 +52,7 @@ const Navbar = ({ cartCount }) => {
     
     {
       isOpen && 
-    <ul className='sm:hidden w-2/5 h-screen pl-4 fixed top-0 right-0 z-20 bg-indigo-900'>
+    <ul className='sm:hidden w-2/5 h-screen pl-4 fixed top-0 right-0 z-50 bg-indigo-900'>
     <div className='pt-4 text-white'>
     <RxCross2 size='30' onClick={openMenu}/>
     </div>

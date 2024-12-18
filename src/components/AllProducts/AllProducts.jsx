@@ -48,7 +48,7 @@ const AllProducts = ({ addToCart }) => {
   return (
     <>
       {/* Search and Filter Section */}
-      <div className="w-full mx-auto mt-[3rem] mb-2 bg-[#c08CFF] px-2 py-1 fixed top-0 z-50">
+      <div className="w-full mx-auto mt-[3rem] mb-2 bg-[#c08CFF] px-2 py-1 fixed top-0 z-20">
         <div className="w-full sm:w-4/5 flex flex-row justify-between items-center">
           <div className="w-full flex flex-row justify-center items-center gap-6">
             <input

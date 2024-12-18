@@ -4,13 +4,33 @@ import { FaFacebook } from "react-icons/fa";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import loginbanner from "../../assets/loginbanner.webp";
+import toast from 'react-hot-toast';
 
 
 const SignUp = () => {
   
   const [isVisible, setIsVisible] = useState(false);
-  const [isVisible1, setIsVisible1] = useState(false);
   
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+  
+  
+  const handleChange = (e) => {
+    e.preventDefault();
+    
+    setUserData({...userData, [e.target.name]: e.target.value});
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(!userData.username || !userData.email || !userData.password || !userData.confirmpassword) {
+      return toast.error("All fields are required!")
+    }
+  }
   
   
   return (
@@ -26,14 +46,15 @@ const SignUp = () => {
 		<h3 className='text-2xl font-semibold'>Welcome Back</h3>
 		<p className='text-gray-600'>Please login to your account</p>
 		</div>
+		
 		<form className='w-full mx-auto text-center mt-6'>
 		<div className='flex flex-col justify-center items-center gap-y-6'>
-		<input type='text' placeholder='Full Name' name='name' className='w-5/6 h-[2.7rem] rounded-lg pl-4 outline-none  focus:ring-2 focus:ring-green-500 tracking-wider text-xl'/>
+		<input type='text' placeholder='Full Name' name='username' value={userData.username} className='w-5/6 h-[2.7rem] rounded-lg pl-4 outline-none  focus:ring-2 focus:ring-green-500 tracking-wider text-xl' onChange={handleChange}/>
 		
-		<input type='text' placeholder='Email' name='email' className='w-5/6 h-[2.7rem] rounded-lg pl-4 outline-none  focus:ring-2 focus:ring-green-500 tracking-wider text-xl'/>
+		<input type='text' placeholder='Email' name='email' value={userData.email} className='w-5/6 h-[2.7rem] rounded-lg pl-4 outline-none  focus:ring-2 focus:ring-green-500 tracking-wider text-xl' onChange={handleChange}/>
 		
 		<div className='w-full mx-auto text-center flex flex-col relative'>
-		<input type={isVisible ? "text" : "password"} placeholder='New password' name='password' className='w-5/6 h-[2.7rem] mx-auto rounded-lg pl-4 outline-none focus:ring-2 focus:ring-green-500 text-xl'/>
+		<input type={isVisible ? "text" : "password"} placeholder='New password' name='password' value={userData.password} className='w-5/6 h-[2.7rem] mx-auto rounded-lg pl-4 outline-none focus:ring-2 focus:ring-green-500 text-xl' onChange={handleChange}/>
 		
 		<div className='absolute top-[24%] right-[11%] z-10' onClick={()=> setIsVisible(prev=>!prev)}>
 		{
@@ -42,16 +63,16 @@ const SignUp = () => {
 		</div>
 		</div>
 		<div className='w-full mx-auto text-center flex flex-col relative'>
-		<input type={isVisible1 ? "text" : "password"} placeholder='Confirm password' name='confirmpassword' className='w-5/6 h-[2.7rem] mx-auto rounded-lg pl-4 outline-none focus:ring-2 focus:ring-green-500 text-xl'/>
+		<input type={isVisible ? "text" : "password"} placeholder='Confirm password' name='confirmpassword' value={userData.confirmpassword} className='w-5/6 h-[2.7rem] mx-auto rounded-lg pl-4 outline-none focus:ring-2 focus:ring-green-500 text-xl' onChange={handleChange}/>
 		
-		<div className='absolute top-[24%] right-[11%] z-10' onClick={()=> setIsVisible1(prev=>!prev)}>
+		<div className='absolute top-[24%] right-[11%] z-10' onClick={()=> setIsVisible(prev=>!prev)}>
 		{
-		 isVisible1 ? <FaRegEye size='20'/> : <FaRegEyeSlash size='20'/>
+		 isVisible ? <FaRegEye size='20'/> : <FaRegEyeSlash size='20'/>
 		}
 		</div>
 		</div>
 		
-		<input type='submit' className='w-4/5 py-1 text-2xl font-semibold uppercase bg-[#FF9200] text-white rounded-md hover:bg-[#e47e00] transition-all duration-200' value='Login'/>
+		<input type='submit' className='w-4/5 py-1 text-2xl font-semibold uppercase bg-[#FF9200] text-white rounded-md hover:bg-[#e47e00] transition-all duration-200' value='Login' onClick={handleSubmit}/>
 		</div>
 		</form>
 		<div className='w-full mx-auto text-center py-5 flex flex-col justify-center items-center gap-y-6'>

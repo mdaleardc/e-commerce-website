@@ -7,6 +7,7 @@ import AllProducts from "./components/AllProducts/AllProducts";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 
 const App = () => {
@@ -98,13 +99,14 @@ const App = () => {
     <Routes>
     
     <Route path='/' element={<Home />}/>
-    <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove} totalCost={totalCost.toFixed(2)} setPromoCode={setPromoCode} applyPromoCode={applyPromoCode} promoCode={promoCode} invalidPromo={invalidPromo} promoApplied={promoApplied}/>}/>
+    <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove} totalCost={(totalCost*209.8247).toFixed(2)} setPromoCode={setPromoCode} applyPromoCode={applyPromoCode} promoCode={promoCode} invalidPromo={invalidPromo} promoApplied={promoApplied}/>}/>
     <Route path='/all-products' element={<AllProducts addToCart={addToCart} />}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>
 
     </Routes>
     <Footer />
+    <Toaster />
     </BrowserRouter>
     
     </div>

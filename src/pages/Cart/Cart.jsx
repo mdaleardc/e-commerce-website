@@ -2,11 +2,12 @@ import cartpng from "../../assets/cartpng.jpg"
 import { RxCross2 } from "react-icons/rx";
 import { HiMiniArrowUturnLeft } from "react-icons/hi2";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode, invalidPromo, promoApplied }) => {
   
+  const navigate = useNavigate();
   
   return (
     <div className="pt-[3rem]">
@@ -32,7 +33,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
     {
       cart.map((cartItem) => {
       
-      const priceFixedToDecPoint = cartItem.price.toFixed(2)
+      const priceFixedToDecPoint = (cartItem.price * 209.8247).toFixed(2)
       
         return (
         <div key={cartItem.id} className='text-black bg-gray-300 grid grid-cols-12 justify-center items-center border p-2 rounded'>
@@ -52,16 +53,14 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
         </div>
             <div className='flex flex-row justify-between items-center gap-4'>
               <p>{priceFixedToDecPoint} <span className='text-[10px] font-bold'>MMK</span></p>
-              <p>{(cartItem.price * cartItem.quantity).toFixed(2)} <span className='text-[10px] font-bold'>MMK</span></p>
+              <p>{(priceFixedToDecPoint * cartItem.quantity).toFixed(2)} <span className='text-[10px] font-bold'>MMK</span></p>
             </div>
       </div>
     </div>
         )
       })
     }
-    <Link to="/all-products">
-      <button className='text-left flex flex-row items-center gap-2  text-blue-400'><FaArrowLeft size='30' className=' text-[blue]' aria-label="Continue to hopping"/> Continue Shopping</button>
-      </Link>
+      <button className='text-left flex flex-row items-center gap-2  text-blue-400' onClick={navigate("/all-products")}><FaArrowLeft size='30' className=' text-[blue]' aria-label="Continue to hopping"/> Continue Shopping</button>
   </div>
   </div>
   
