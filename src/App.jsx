@@ -38,7 +38,6 @@ const App = () => {
     } else {
       
     setCart([...cart, {...product, quantity: 1}]);
-    setCartCount(cart.length);
     }
   }
   

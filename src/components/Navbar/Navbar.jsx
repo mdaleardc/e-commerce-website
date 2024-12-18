@@ -24,7 +24,7 @@ const Navbar = ({ cartCount }) => {
     </Link>
     </div>
     
-    <ul className='hidden sm:flex flex-row justify-between items-center sm:gap-4'
+    <motion.ul className='hidden sm:flex flex-row justify-between items-center sm:gap-4'
     whileHover={{
       
     }}>
@@ -36,7 +36,7 @@ const Navbar = ({ cartCount }) => {
     </Link>
     <li>Mens</li>
     <li>Kids</li>
-    </ul>
+    </motion.ul>
     
     <div className='flex flex-row justify-between items-center gap-3'>
     <Link to='/login'>

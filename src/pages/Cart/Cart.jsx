@@ -1,6 +1,5 @@
 import cartpng from "../../assets/cartpng.jpg"
 import { RxCross2 } from "react-icons/rx";
-import { HiMiniArrowUturnLeft } from "react-icons/hi2";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -60,7 +59,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
         )
       })
     }
-      <button className='text-left flex flex-row items-center gap-2  text-blue-400' onClick={navigate("/all-products")}><FaArrowLeft size='30' className=' text-[blue]' aria-label="Continue to hopping"/> Continue Shopping</button>
+      <button className='text-left flex flex-row items-center gap-2  text-blue-400' onClick={()=>navigate("/all-products")}><FaArrowLeft size='30' className=' text-[blue]' aria-label="Continue to hopping"/> Continue Shopping</button>
   </div>
   </div>
   
