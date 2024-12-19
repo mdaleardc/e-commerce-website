@@ -57,7 +57,7 @@ const [isShown, setIsShown] = useState(false);
 		<div className='w-full mx-auto text-center flex flex-col relative'>
 		<input type={isShown ? "text" : "password"} placeholder='Password' name='password' value={userInput.password} className='w-5/6 h-[2.7rem] mx-auto rounded-lg pl-4 outline-none focus:ring-2 focus:ring-green-500 text-xl' onChange={handleChange}/>
 		
-		<div className='absolute top-[20%] right-[11%] z-10' onClick={()=> setIsShown((prev) => !prev)}>
+		<div className='absolute top-[20%] right-[11%] z-0' onClick={()=> setIsShown((prev) => !prev)}>
 		{
 		isShown ? <FaRegEye size='20'/> : <FaRegEyeSlash size='20'/>
 		}
