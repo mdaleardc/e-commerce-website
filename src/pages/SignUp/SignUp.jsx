@@ -38,7 +38,7 @@ const SignUp = () => {
     e.preventDefault();
     if(!userData.username || !userData.email || !userData.password || !userData.confirmpassword) {
       return toast.error("All fields are required!")
-    } else if (userData.email.trim() === "" || !validateEmail(userData.email)) {
+    } else if (!validateEmail(userData.email)) {
       return toast.error("Please input a valid email!");
     } else if (userData.password !== userData.confirmpassword) {
       return toast.error("Match the  password!")
