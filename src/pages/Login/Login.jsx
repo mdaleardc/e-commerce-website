@@ -3,16 +3,24 @@ import loginbanner1 from "../../assets/loginbanner1.jpg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../FirebaseAuth/FirebaseAuth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import toast from 'react-hot-toast';
 
 
 
 const Login = () => {
-
+  
+  const navigateToHome = useNavigate();
+  
 const [userInput, setUserInput] = useState({
   email: '',
   password: '',
 });
+
+const [isVisible, setIsVisible] = useState(false);
+
 
 
 const handleChange = (e) => {
@@ -30,13 +38,22 @@ const formValidate = (e) => {
   e.preventDefault();
   
   if(userInput.email.trim() === '' || !validateEmail(userInput.email)) {
-    alert("Please input a valid email!");
+    return toast.error("Please input a valid email!");
   } else if (userInput.password.trim() === "") {
-    alert("Please input your password!")
+    return toast.error("Please input your password!");
+  } else {
+    signInWithEmailAndPassword(auth, userInput.email, userInput.password)
+    .then(async (res)=>{
+      if(userInput.email === await res.user.email) {
+      navigateToHome("/");
+      } else {
+        console.log("Email not matched")
+        return toast.error("Email not matched or wrong password!");
+      }
+    })
   }
 }
 
-const [isShown, setIsShown] = useState(false);
 
 	return (
 		<>
@@ -55,11 +72,11 @@ const [isShown, setIsShown] = useState(false);
 		<div className='flex flex-col justify-center items-center gap-y-6'>
 		<input type='text' placeholder='Email' name='email' value={userInput.email} className='w-5/6 h-[2.7rem] rounded-lg pl-4 outline-none  focus:ring-2 focus:ring-green-500 tracking-wider text-xl' onChange={handleChange}/>
 		<div className='w-full mx-auto text-center flex flex-col relative'>
-		<input type={isShown ? "text" : "password"} placeholder='Password' name='password' value={userInput.password} className='w-5/6 h-[2.7rem] mx-auto rounded-lg pl-4 outline-none focus:ring-2 focus:ring-green-500 text-xl' onChange={handleChange}/>
+		<input type={isVisible ? "text" : "password"} placeholder='Password' name='password' value={userInput.password} className='w-5/6 h-[2.7rem] mx-auto rounded-lg pl-4 outline-none focus:ring-2 focus:ring-green-500 text-xl' onChange={handleChange}/>
 		
-		<div className='absolute top-[20%] right-[11%] z-0' onClick={()=> setIsShown((prev) => !prev)}>
+		<div className='absolute top-[20%] right-[11%] z-0' onClick={()=> setIsVisible((prev) => !prev)}>
 		{
-		isShown ? <FaRegEye size='20'/> : <FaRegEyeSlash size='20'/>
+		isVisible ? <FaRegEye size='20'/> : <FaRegEyeSlash size='20'/>
 		}
 		</div>
 		

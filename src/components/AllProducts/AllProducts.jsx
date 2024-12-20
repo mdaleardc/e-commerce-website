@@ -2,12 +2,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom"
 
 const AllProducts = ({ addToCart }) => {
+  
   const [allProducts, setAllProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
   const [productCategory, setProductCategory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchItem, setSearchItem] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -44,10 +49,34 @@ const AllProducts = ({ addToCart }) => {
 
     setAllProducts(data);
   };
-
+  
+  const handleSearchItem = () => {
+    
+    const searchProduct = originalProducts.filter(item=> {
+      return (
+        item.title.toLowerCase().includes(searchItem.toLowerCase())
+        )
+    })
+    setAllProducts(searchProduct);
+    setSearchItem("");
+  }
+  
+  const productByPrice = () => {
+    
+      const min = parseFloat(minPrice);
+      const max = parseFloat(maxPrice);
+    
+    const filteredProductByPrice = originalProducts.filter(item=> (
+        (!min || item.price >= min) && (!max || item.price <= max)
+        ))
+    setAllProducts(filteredProductByPrice);
+  }
+  
+  
+  
   return (
     <>
-      {/* Search and Filter Section */}
+      
       <div className="w-full mx-auto mt-[3rem] mb-2 bg-[#c08CFF] px-2 py-1 fixed top-0 z-20">
         <div className="w-full sm:w-4/5 flex flex-row justify-between items-center">
           <div className="w-full flex flex-row justify-center items-center gap-6">
@@ -55,8 +84,10 @@ const AllProducts = ({ addToCart }) => {
               type="text"
               placeholder="Search"
               className="w-[200px] h-[2.3rem] rounded-sm outline-none focus:ring-2 ring-green-500 pl-4"
-            />
-            <button>
+              value={searchItem}
+              onChange={(e)=>setSearchItem(e.target.value)}
+              onKeyDown={(e)=> e.key === "Enter" && handleSearchItem()}/>
+            <button onClick={handleSearchItem}>
               <FaSearch size="25" className="text-white" />
             </button>
           </div>
@@ -67,27 +98,9 @@ const AllProducts = ({ addToCart }) => {
               onChange={(e) => filterProducts(e.target.value)}
               className="h-[2rem] bg-black rounded-md outline-none"
             >
-              <option>Search by category</option>
+              <option value="">Search by category</option>
               {productCategory
-                .filter(
-                  (categoryName) =>
-                    ![
-                      "home-decoration",
-                      "kitchen-accessories",
-                      "mens shirts",
-                      "mens-shoes",
-                      "mens-watches",
-                      "mobile-accessories",
-                      "womens-bags",
-                      "womens-dresses",
-                      "womens-jewellery",
-                      "womens-shoes",
-                      "womens-watches",
-                      "sports-accessories",
-                      "motorcycle",
-                      "vehicle",
-                    ].includes(categoryName)
-                )
+                .slice(0, 4)
                 .map((item, index) => (
                   <option key={index} className="text-white bg-black" value={item}>
                     {item}
@@ -96,10 +109,25 @@ const AllProducts = ({ addToCart }) => {
             </select>
           </div>
         </div>
+        <div className='w-full mx-auto text-center grid grid-cols-3 sm:grid-cols-6 justify-end gap-2 px-2'>
+        <input
+        type='number'
+        placeholder="Mix price"
+        className='sm:col-start-4 pl-2 outline-none rounded-sm focus:ring-2 ring-green-500'
+        value={minPrice}
+        onChange={(e)=>setMinPrice(e.target.value)}/>
+        <input
+        type='number'
+        placeholder='Max price'
+        className='pl-2 outline-none rounded-sm focus:ring-2 ring-green-500'
+        value={maxPrice}
+        onChange={(e)=>setMaxPrice(e.target.value)}/>
+        <button className="text-white bg-black rounded-md p-1" onClick={productByPrice}>Filter by price</button>
+        </div>
       </div>
 
       
-      <section className="min-w-full mt-[7rem] grid grid-cols-2 sm:grid-cols-3 grid-rows-auto justify-center items-center gap-4">
+      <section className="min-w-full mt-[8.5rem] grid grid-cols-2 sm:grid-cols-3 grid-rows-auto justify-center items-center gap-4">
         {loading ? (
           // Loader Animation
           Array(6)
@@ -126,11 +154,11 @@ const AllProducts = ({ addToCart }) => {
             return (
               <motion.div
                 key={index}
-                className="h-[280px] rounded-lg m-2 bg-gray-200 border-[2px] border-[#A9FFFF] flex flex-col justify-center items-center"
+                className="h-[280px] rounded-lg m-2 bg-gray-200 border-[2px] border-[#A9FFFF] flex flex-col items-center"
                 whileHover= {{
                   scale: 1.1,
                   rotate: 1,
-                  boxShadow: "0px 10px 20px rgba(0, 0, 0. 0.2)" 
+                  boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)" 
                 }}
                 transition= {{
                   type: "spring",
@@ -138,11 +166,12 @@ const AllProducts = ({ addToCart }) => {
                   damping: 20
                 }}
               >
+              <Link to={`/single-item/${allItem.id}`} className="w-full h-3/5 bg-gray-700 rounded-md">
                 <img
                   src={allItem.thumbnail}
                   alt={`${allItem.title} image`}
-                  className="w-full h-3/5 object-cover rounded-md"
-                />
+                  className='mx-auto text-center h-full object-cover'/>
+              </Link>
                 <p>{truncatedTitle}</p>
                 <p className="bg-[#B5CAFF] px-1 font-bold text-[#0082FF] rounded-md">
                   {allItem.rating}

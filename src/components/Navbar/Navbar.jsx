@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { motion } from "motion/react";
 
-const Navbar = ({ cartCount }) => {
+const Navbar = ({ cartCount, userName }) => {
   
   const [isOpen, setIsOpen] = useState(false);
   
@@ -42,6 +42,7 @@ const Navbar = ({ cartCount }) => {
     <Link to='/login'>
     <button className='rounded-3xl bg-gray-200 py-1 px-2'>Login</button>
     </Link>
+    <span>{userName}</span>
     <Link to='/cart'>
     <p className='cursort-pointer relative'><span className='absolute top-[-30%] left-[35%] z-[-1] text-[#FF0055]'>{cartCount ? cartCount : ""}</span><FaShoppingCart size='25' className='opacity-[0.6]'/></p>
     </Link>
@@ -57,14 +58,14 @@ const Navbar = ({ cartCount }) => {
     <RxCross2 size='30' onClick={openMenu}/>
     </div>
     <div className='h-[60%] flex flex-col justify-center gap-y-6 text-white font-medium'>
-    <Link to='/'>
+    <Link to='/' onClick={openMenu}>
     <li>Home</li>
     </Link>
-    <Link to='/all-products'>
+    <Link to='/all-products' onClick={openMenu}>
     <li>Products</li>
     </Link>
-    <li>Mens</li>
-    <li>Kids</li>
+    <li onClick={openMenu}>Mens</li>
+    <li onClick={openMenu}>Kids</li>
     </div>
     </ul>
     }

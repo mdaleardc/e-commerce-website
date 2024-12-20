@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
@@ -7,11 +7,14 @@ import AllProducts from "./components/AllProducts/AllProducts";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
+import SingleProduct from "./SingleProduct/SingleProduct";
 import { Toaster } from "react-hot-toast";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 const App = () => {
   
+  const auth = getAuth();
   
   const [cart, setCart] = useState([]);
   
@@ -23,6 +26,7 @@ const App = () => {
   
   const [promoApplied, setPromoApplied] = useState(false);
   
+  const [userName, setUserName] = useState("");
   
   
   const addToCart = (product) => {
@@ -89,12 +93,23 @@ const App = () => {
     
   }
   
+  //Display Name
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        setUserName(user.displayName);
+      } else {
+        setUserName("");
+      }
+    })
+  },[auth])
+  
   
   return (
     <div>
     
     <BrowserRouter>
-    <Navbar cartCount={cartCount}/>
+    <Navbar cartCount={cartCount} userName={userName}/>
     <Routes>
     
     <Route path='/' element={<Home />}/>
@@ -102,6 +117,7 @@ const App = () => {
     <Route path='/all-products' element={<AllProducts addToCart={addToCart} />}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>
+    <Route path="/single-item/:id" element={<SingleProduct/>}/>
 
     </Routes>
     <Footer />
