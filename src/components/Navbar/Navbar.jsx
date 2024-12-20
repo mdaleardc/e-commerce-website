@@ -34,8 +34,12 @@ const Navbar = ({ cartCount, userName }) => {
     <Link to='/all-products'>
     <li>All Products</li>
     </Link>
-    <li>Mens</li>
-    <li>Kids</li>
+    <Link to='/about'>
+    <li>About</li>
+    </Link>
+    <Link to='/contact'>
+    <li>Contact</li>
+    </Link>
     </motion.ul>
     
     <div className='flex flex-row justify-between items-center gap-3'>
@@ -64,8 +68,12 @@ const Navbar = ({ cartCount, userName }) => {
     <Link to='/all-products' onClick={openMenu}>
     <li>Products</li>
     </Link>
-    <li onClick={openMenu}>Mens</li>
-    <li onClick={openMenu}>Kids</li>
+    <Link to='/about' onClick={openMenu}>
+    <li>About</li>
+    </Link>
+    <Link to='/contact' onClick={openMenu}>
+    <li>Contact</li>
+    </Link>
     </div>
     </ul>
     }

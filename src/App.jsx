@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import AllProducts from "./components/AllProducts/AllProducts";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
@@ -115,6 +117,8 @@ const App = () => {
     <Route path='/' element={<Home />}/>
     <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove} totalCost={(totalCost*209.8247).toFixed(2)} setPromoCode={setPromoCode} applyPromoCode={applyPromoCode} promoCode={promoCode} invalidPromo={invalidPromo} promoApplied={promoApplied}/>}/>
     <Route path='/all-products' element={<AllProducts addToCart={addToCart}/>}/>
+    <Route path='about' element={<About/>}/>
+    <Route path='contact' element={<Contact/>}/>
     <Route path="/single-item/:id" element={<SingleProduct addToCart={addToCart}/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>
