@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom"
+import toast from 'react-hot-toast';
 
 const AllProducts = ({ addToCart }) => {
   
@@ -181,7 +182,10 @@ const AllProducts = ({ addToCart }) => {
                 </p>
                 <button
                   className="rounded-md bg-[#008CFF] px-2 text-xl font-medium text-white"
-                  onClick={() => addToCart(allItem)}
+                  onClick={() => {
+                  addToCart(allItem)
+                  toast.success("Product added to cart!");
+                  }}
                 >
                   Add to Cart
                 </button>
