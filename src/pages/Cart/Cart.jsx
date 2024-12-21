@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode, invalidPromo, promoApplied }) => {
-  
   const navigate = useNavigate();
   
   return (

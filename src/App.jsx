@@ -114,7 +114,7 @@ const App = () => {
     <Navbar cartCount={cartCount} userName={userName}/>
     <Routes>
     
-    <Route path='/' element={<Home />}/>
+    <Route path='/' element={<Home addToCart={addToCart}/>}/>
     <Route path='/cart' element={<Cart cart={cart} handleDec={handleDec} handleInc={handleInc} handleRemove={handleRemove} totalCost={(totalCost*209.8247).toFixed(2)} setPromoCode={setPromoCode} applyPromoCode={applyPromoCode} promoCode={promoCode} invalidPromo={invalidPromo} promoApplied={promoApplied}/>}/>
     <Route path='/all-products' element={<AllProducts addToCart={addToCart}/>}/>
     <Route path='about' element={<About/>}/>
