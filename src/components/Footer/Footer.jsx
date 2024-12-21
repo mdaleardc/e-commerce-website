@@ -1,5 +1,4 @@
 import { FaSquareFacebook, FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
-import developmentSign from "../../assets/under_development.png"
 
 const Footer = () => {
   
@@ -9,9 +8,7 @@ const Footer = () => {
     <>
     
     <footer className="bg-black pt-[4rem] mx-auto">
-    <img src={developmentSign} alt="development sign" className='w-2/5 h-[200px] mx-auto'/>
     <div className='w-[95%] sm:w-5/6 text-white mx-auto grid grid-cols-2 sm:grid-cols-4 justify-center gap-x-2 gap-y-4 px-2 py-6'>
-    
     <div className=''>
     <h4 className='text-2xl font-medium text-yellow-400 tracking-wider'>Menu</h4>
     <p>Home</p>
