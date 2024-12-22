@@ -28,7 +28,7 @@ const About = () => {
       <div className="lg:flex-grow md:w-1/2  px-5 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
       <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">E-Shop</h1>
       <p className="mb-8 leading-relaxed text-justify">
-At E-Shop, we believe in the power of technology and creativity. Whether it's crafting seamless digital solutions or designing user-friendly interfaces, our work is driven by a simple principle: to make life easier and more enjoyable for everyone.
+At E-Shop, we believe in the power of technology and creativity. Whether it&apos;s crafting seamless digital solutions or designing user-friendly interfaces, our work is driven by a simple principle: to make life easier and more enjoyable for everyone.
 Thank you for choosing us. We look forward to growing with you and achieving great things together!
 </p>
 </div>
