@@ -1,7 +1,7 @@
 import Hero from "../../components/Hero/Hero";
 import Service from "../../components/Service/Service";
 import PopularProducts from "../../components/PopularProducts/PopularProducts";
-import Testemonials from "../../components/Testemonials/Testemonials"
+import Testimonials from "../../components/Testimonials/Testimonials"
 import Gallery from "../../components/Gallery/Gallery";
 
 const Home = ({ addToCart }) => {
@@ -13,7 +13,7 @@ const Home = ({ addToCart }) => {
     <Hero />
     <Service />
     <PopularProducts addToCart={addToCart}/>
-    <Testemonials />
+    <Testimonials />
     <Gallery />
     </div>
     )
