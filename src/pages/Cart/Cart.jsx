@@ -2,6 +2,7 @@ import cartpng from "../../assets/cartpng.jpg"
 import { RxCross2 } from "react-icons/rx";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../components/Modal/Modal";
 
 
 const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode, invalidPromo, promoApplied }) => {
@@ -14,7 +15,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
     
     
 <section className="bg-white text-black py-8 md:py-10">
-  <div className="mx-auto max-w-screen-xl px-4 2xl:px-0 grid grid-cols-1 md:grid-cols-7 gap-2">
+  <div className="mx-auto max-w-screen-xl px-4 2xl:px-0 grid grid-cols-1 md:grid-cols-7 gap-2 justify-center items-center">
     <div className='col-span-5'>
   <div className='flex flex-row justify-between items-center border-b-[2px] border-gray-400 text-2xl font-medium'>
     <h2>Shopping Cart</h2>
@@ -65,7 +66,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
   {/*Order Summary*/}
   
   
-  <div className='h-fit mx-auto col-span-2 rounded-md text-black p-2 border-[1px] border-red-800  bg-gray-300'>
+  <div className='h-fit mx-auto text-center col-span-2 rounded-md text-black p-2 border-[1px] border-red-800  bg-gray-300'>
     <h2 className='w-fit mx-auto text-2xl font-semibold text-center border-b'>Order Summary</h2>
     <div className='flex flex-row justify-between p-2'>
       <h4>ITEMS {cart.length}</h4>
@@ -95,6 +96,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
     
     
     </div>
+    <Modal />
     </div>
     )
 }

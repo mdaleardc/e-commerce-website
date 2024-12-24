@@ -46,9 +46,9 @@ const formValidate = (e) => {
     .then(async (res)=>{
       if(userInput.email === await res.user.email) {
       navigateToHome("/");
-      } else {
-        return toast.error("Email not matched or wrong password!");
       }
+    }).catch(()=> {
+      toast.error("Email or password did not match!");
     })
   }
 }
