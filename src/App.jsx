@@ -99,7 +99,7 @@ const App = () => {
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
       if(user) {
-        setUserName(user.displayName);
+        setUserName(user.displayName ? user.displayName.charAt(0).toUpperCase() : "");
       } else {
         setUserName("");
       }

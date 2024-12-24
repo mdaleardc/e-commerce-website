@@ -4,6 +4,9 @@ import { FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { motion } from "motion/react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../FirebaseAuth/FirebaseAuth";
+import { toast } from "react-hot-toast";
 
 const Navbar = ({ cartCount, userName }) => {
   
@@ -12,6 +15,16 @@ const Navbar = ({ cartCount, userName }) => {
   const openMenu = () => {
     setIsOpen(!isOpen);
   }
+  
+  
+  const handleLogOut = () => {
+    signOut(auth).then(()=>{
+      toast.success("Signed out!")
+    }).then((err)=>{
+      toast.error(err.message);
+    })
+  }
+  
   
   return (
     <>
@@ -43,10 +56,18 @@ const Navbar = ({ cartCount, userName }) => {
     </motion.ul>
     
     <div className='flex flex-row justify-between items-center gap-3'>
+    {
+    userName ? (
+    <>
+    <button className='rounded-3xl bg-gray-200 py-1 px-2' onClick={handleLogOut}>Log Out</button>
+    <span>{userName}</span>
+    </>
+    ) : (
     <Link to='/login'>
     <button className='rounded-3xl bg-gray-200 py-1 px-2'>Login</button>
     </Link>
-    <span>{userName}</span>
+    )
+    }
     <Link to='/cart'>
     <p className='cursort-pointer relative'><span className='absolute top-[-30%] left-[35%] z-[-1] text-[#FF0055]'>{cartCount ? cartCount : ""}</span><FaShoppingCart size='25' className='opacity-[0.6]'/></p>
     </Link>

@@ -30,7 +30,7 @@ const handleSubmit = (e) => {
     return toast.error("Please input a valid email!");
   } else {
     try {
-      const userContactData = addDoc(collection(db, "userContactDb"), {
+      addDoc(collection(db, "userContactDb"), {
         user: userContact.username,
         email: userContact.email,
         message: userContact.message

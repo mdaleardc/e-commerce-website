@@ -5,7 +5,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../FirebaseAuth/FirebaseAuth";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, validatePassword } from "firebase/auth";
 import toast from 'react-hot-toast';
 
 
@@ -36,7 +36,7 @@ const validateEmail = (email) => {
 
 const formValidate = (e) => {
   e.preventDefault();
-  
+   
   if(userInput.email.trim() === '' || !validateEmail(userInput.email)) {
     return toast.error("Please input a valid email!");
   } else if (userInput.password.trim() === "") {
@@ -47,7 +47,6 @@ const formValidate = (e) => {
       if(userInput.email === await res.user.email) {
       navigateToHome("/");
       } else {
-        console.log("Email not matched")
         return toast.error("Email not matched or wrong password!");
       }
     })
