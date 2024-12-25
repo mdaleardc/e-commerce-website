@@ -63,13 +63,8 @@ const App = () => {
   
   
   const handleRemove = (id) => {
-    
-    const isConfirm = window.confirm("Remove?");
-    
-    if(isConfirm) {
       const updateItem = cart.filter(fltItem => fltItem.id !== id);
     setCart(updateItem);
-    }
   }
   
   const totalCost = cart.reduce((acc, item) => acc + item.price * item.quantity, 0) - discount;

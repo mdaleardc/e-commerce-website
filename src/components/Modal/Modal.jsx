@@ -27,7 +27,8 @@ const Modal = ({viewModal}) => {
     if(!inputData.fullName || !inputData.contactNumber || !inputData.camp || !inputData.block || !inputData.subBlock) {
      return toast.error("All fields are required!")
     } else {
-      return;
+      viewModal();
+      return toast.success("Order set successfully");
     }
   }
   

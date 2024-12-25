@@ -1,9 +1,10 @@
 import cartpng from "../../assets/cartpng.jpg"
-import { RxCross2 } from "react-icons/rx";
+import { MdDelete } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
+import EmptyCart from "../../components/EmptyCart/EmptyCart";
 
 
 const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode, invalidPromo, promoApplied }) => {
@@ -17,7 +18,8 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
   
   return (
   <div className="pt-[3rem]">
-    <div>
+ { cart.length <= 0 ? <EmptyCart /> :
+    (<div>
     <img src={cartpng} alt='Cart Banner' className='w-full h-[200px] object-cover'/>
     
     
@@ -48,7 +50,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
         <div>
         <p>{cartItem.title}</p>
         <p>{cartItem.category}</p>
-        <button className='flex flex-row items-center justify-center gap-2 text-red-400' onClick={()=>handleRemove(cartItem.id)} aria-label="Remove item"><RxCross2 /> Remove</button>
+        <button className='flex flex-row items-center justify-center gap-2 text-gray-800' onClick={()=>handleRemove(cartItem.id)} aria-label="Remove item"><MdDelete size='25' /></button>
         </div>
       </div>
       <div className='col-span-8 grid grid-cols-2 justify-center items-center'>
@@ -109,6 +111,7 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
   }
 </section>
     </div>
+    )}
     </div>
     )
 }
