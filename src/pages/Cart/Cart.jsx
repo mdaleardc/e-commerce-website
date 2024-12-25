@@ -3,13 +3,20 @@ import { RxCross2 } from "react-icons/rx";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
+import { useState } from "react";
 
 
 const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoCode, setPromoCode, promoCode, invalidPromo, promoApplied }) => {
   const navigate = useNavigate();
   
+  const [isShowModal, setIsShowModal] = useState(false);
+  
+  const viewModal = () => {
+    setIsShowModal(!isShowModal);
+  }
+  
   return (
-    <div className="pt-[3rem]">
+  <div className="pt-[3rem]">
     <div>
     <img src={cartpng} alt='Cart Banner' className='w-full h-[200px] object-cover'/>
     
@@ -85,18 +92,23 @@ const Cart = ({ cart, handleDec, handleInc, handleRemove, totalCost, applyPromoC
         <p>Total Cost</p>
         <p>{cart.length ? (Number(totalCost) + 10).toFixed(2) :  0.00}</p>
       </div>
-        <button className='text-white bg-[green] mx-auto px-1 rounded-md w-3/5 text-xl font-medium'>Checkout</button>
+        <button className='text-white bg-[green] mx-auto px-1 rounded-md w-3/5 text-xl font-medium' onClick={viewModal}>Checkout</button>
     </div>
   </div>
   </div>
   
   </div>
-</section>
-    
-    
-    
+  {
+    isShowModal && (<div className='w-screen h-screen fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
+    <div className='w-full h-full relative'>
+    <div className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-center'>
+    <Modal viewModal={viewModal}/>
     </div>
-    <Modal />
+    </div>
+    </div>)
+  }
+</section>
+    </div>
     </div>
     )
 }
